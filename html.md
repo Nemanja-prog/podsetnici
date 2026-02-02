@@ -28,7 +28,7 @@
 1. `<!DOCTYPE html>`
 
 ## `<html>`
-- lang - jezik
+### lang - jezik
    + en - engleski
    + sr - srpski
 
@@ -41,7 +41,7 @@
 ## head (ne vidi se)
 + Podaci o sajtu:
 1. `<meta>` 
-    ## `<meta>`: 
+    ### `<meta>`: 
     - charset - kodiranje
         + UTF-8
     - name - tip
@@ -55,7 +55,7 @@
 1. `<title>` naslov u tabu
 
 2. `<link>` povezivanje sa drugim fajlom
-    ## `<link>`: 
+    ### `<link>`: 
     - rel - odnos
         + stylesheet - stilovi
         + icon - ikona
@@ -77,7 +77,7 @@
 5. `<ul>` neuređena lista
 
 6. `<ol>` uređena (brojčana) lista
-    ## `<ol>`:
+    ### `<ol>`:
     - type - tip
         + 1 - brojevi
         + A - velika slova
@@ -90,7 +90,7 @@
 7. `<li>` stavka u listi
 
 8. `<a>` link
-    ## `<a>`:
+    ### `<a>`:
     - href - putanja
         + url - destinacija
         + #id - sidro
@@ -104,7 +104,7 @@
         + noopener - sigurnost
 
 9.  `<div>` kontejner
-    ## `<div>`:
+    ### `<div>`:
     - id - identifikacija
         + ime - identitet
     - class - klasa
@@ -113,7 +113,7 @@
 + Otvoreni tagovi:
 
 1. `<img>` slika
-    ## `<img>`: 
+    ### `<img>`: 
       - src - izvor
         + putanja - izvor
       - alt - opis
