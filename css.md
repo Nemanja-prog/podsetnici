@@ -3,7 +3,7 @@
 
 ## Selektori u CSS-u
 1. Univerzalni
-  - * - sve
+  - `*` - sve
 
 2. Element 
   - p {} - element
@@ -40,7 +40,7 @@
 1. color - tekst
 
 2. background-color - pozadina
-  - Vrednosti:
+  ### Vrednosti:
     + ime - tekst
       * red - ime
     + hex - heksadecimalno
@@ -54,20 +54,20 @@
 
 ## Tekst
 1. font-family- font
-  - Vrednosti:
+  ### Vrednosti:
     + serif - serif
     + sans-serif - bez serif
     + monospace - jednaka širina
     + ime fonta - font
 2. font-size - veličina
-  - Vrednosti:
+  ### Vrednosti:
     + px - piksel
     + em - relativno
     + rem - root
     + % - procenat
 
 3. font-weight - debljina
-  - Vrednosti:
+  ### Vrednosti:
     + 100 - 900 - jačina
     + normal - normalno
     + bold - podebljano
@@ -75,14 +75,14 @@
     + bolder - deblje 
 
 4. text-align - poravnanje
-  - Vrednosti:
+  ### Vrednosti:
     + left - levo
     + right - desno
     + center - center
     + justify - poravnato 
 
 5. text-decoration - dekoracija
-  - Vrednosti:
+  ### Vrednosti:
     + none - bez
     + underline - podvučeno
     + line-through - precrtano
@@ -92,7 +92,7 @@
 1. width - širina
   
 2. height - visina
-  - Vrednosti:
+  ### Vrednosti:
    + auto - proporcija
    + px - fiksno
    + % - relativno
@@ -108,13 +108,13 @@
 2. border - ivica
 
 3. margin - spoljašnji razmak
-  - Vrednosti: 
+  ### Vrednosti: 
    + px - razmak 
    + % - relativno
    + auto - automatski
 
 4. border-style - stil ivice
-  - Vrednosti:
+  ### Vrednosti:
    + solid - puna
    + dashed - isprekidana
    + dotted - tačkasta
@@ -122,7 +122,7 @@
    + none - bez
 
 ## display
-  - Vrednosti:
+  ### Vrednosti:
    + block - blok
    + inline - linijski (bez dodatnog margin i padding)
    + inline-block - kombinovano (inline ponašanje, block razmaci)
@@ -144,30 +144,30 @@
   - element unutar flex kontejnera
   
 3. flex-grow - rast
-  - Vrednosti:
+  ### Vrednosti:
     + 0 - bez rasta
     + 1+ - rast
 
 4. flex-shrink - skupljanje
-  - Vrednosti:
+  ### Vrednosti:
     + 0 - bez skupljanja
     + 1+ - skupljanje
 
 5. flex-basis - početna veličina
-  - Vrednosti:
+  ### Vrednosti:
     + auto - osnovno
     + px - veličina
     + % - relativno
 
 6. flex-direction putanja
-  - Vrednosti:
+  ### Vrednosti:
     + row - red (default)
     + column kolona
     + row-reverse obrnut red
     + column-reverse obrnuta kolona
   
 7. flex-wrap - ponašanje
-  - Vrednosti:
+  ### Vrednosti:
     + nowrap - bez preloma (default)
     + wrap - prelom
     + wrap-reverse - obrnut prelom
@@ -175,7 +175,7 @@
 8. justify-content glavna osa
       * flex-direction: row po horizontali
       * flex-direction: column po vertikali
-  - Vrednosti:
+  ### Vrednosti:
     + flex-start - početak
     + flex-end - kraj
     + center - centar
@@ -186,7 +186,7 @@
 9.  align-items - poprečna osa
       * flex-direction: row po vertikali
       * flex-direction: column po horizontali
-  - Vrednosti: 
+  ### Vrednosti: 
     + stretch - razvlačenje
     + flex-start - vrh
     + flex-end - dno
@@ -194,11 +194,11 @@
     + baseline - tekst
 
 10. gap - razmak između redova i kolone
-  - Vrednosti:
+  ### Vrednosti:
     + px - razmak
     + % - relativno
 
 11. Order - redosled
-  - Vrednosti:
+  ### Vrednosti:
     + 0 - podrazumevano
     + 1+ - pomeranje
