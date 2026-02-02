@@ -1,5 +1,5 @@
 ## Komentar
-  - /*adad*/
+  - `/*adad*/`
 
 ## Selektori u CSS-u
 1. Univerzalni
