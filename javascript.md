@@ -481,3 +481,375 @@ what you had to do, and began,`;
       }
       i++;
       } while (i < cats.length);`
+
+## Nizovi
+  * Organizovana kolekcija podataka
+    ### Dve sintakse
+    1. `let arr = new Array();`
+    2. `let arr = [];`
+    - Drugi način se mnogo često koristi
+    #### Primer
+    `let fruits = ["Apple", "Orange", "Plum"];`
+
+  * Elementi počinju od `0`
+    ### Pristup elementu niza
+    `let fruits = ["Apple", "Orange", "Plum"];
+     console.log(fruits[0]); // Apple
+     console.log(fruits[1]); // Orange
+     console.log(fruits[2]); // Plum`
+    
+    ### Zamena elementa niza
+    `fruits[2] = "Pear"; // sada je ["Apple", "Orange", "Pear"]`
+
+    ### Dodavanje novog elementa u niz
+    `fruits[3] = "Lemon"; // sada je ["Apple", "Orange", "Pear", "Lemon"]`
+
+  * Ukupan broj elemenata u nizu je `length` (dužina)
+    #### Napomena
+    - Kad se niz modifikuje, automatski se ažurira
+    - Ne broji vrednosti, nego `najveći indeks + 1`
+    - Ona je upisiva tj. ručno se poveća, ništa specijalno, ali ako se ručno smanji, niz se skraćuje (nepovratan je)
+    - Za čišćenje niza koristiti `arr.length = 0;`
+    ##### Primer
+    `let fruits = ["Apple", "Orange", "Plum"];
+    console.log(fruits.length); // 3`
+ 
+    - To isto može i sa `alert`
+    #### Primer
+    `let fruits = ["Apple", "Orange", "Plum"];
+    alert(fruits); // Apple, Orange, Plum` 
+  
+  * Može da skladišti bilo koji tip podatka
+  * Može da se završava sa `,`
+  
+  ### Pristup poslednjm elementu niza
+  1. `imeNiza[imeNiza.length - 1]`
+   #### Primer:
+   `console.log(fruits[fruits.length - 1]); // Plum`
+
+  2. `imeNiza.at(-1)`
+   #### Primer:
+   `console.log(fruits.at(-1)); // Plum`
+
+  - Drugi način je noviji
+  - Isto je kao imeNiza[i], ako je i >= 0
+  - Za negativne vrednosti, počinje sa kraja niza
+
+  ### Metode
+    #### Rade sa krajem niza
+    1. `.push()` - Dodaje element na kraju niza
+    - Jednak je `imeNiza[imeNiza.length] = ...`
+    ##### Primer
+    `let fruits = ["Apple", "Orange"];
+    fruits.push("Pear");
+    console.log(fruits); // Apple, Orange, Pear`
+
+    2. `.pop()` - Uzima element sa kraja niza i vraća ga
+    ##### Napomena
+    - Vraća poslednji element niza, ali modifikuje niz tako što ga uklanja
+    ###### Primer
+    `let fruits = ["Apple", "Orange", "Pear"];
+    console.log(fruits.pop()); // uklanja Pear i vraća ga
+     console.log(fruits); // Apple, Orange`
+    
+    #### Rade sa početka niza
+    3. `.shift()` - Uzima prvi element sa početka niza, vraća ga i gura niz (drugi element sad postaje prvi)
+    ##### Primer
+   `let fruits = ["Apple", "Orange", "Pear"];
+    console.log(fruits.shift()); // uklanja Apple i vraća ga
+    console.log(fruits); // Orange, Pear`
+
+    4. `.unshift()` - Dodaje element na početak niza
+    ##### Primer
+    `let fruits = ["Orange", "Pear"];
+     fruits.unshift("Apple");
+     console.log(fruits); // Apple, Orange, Pear`
+
+    - Metode `.push()` i `.unshift()` mogu da dodaju više od jednog elementa
+    ##### Primer
+    `let fruits = ["Apple"];
+     fruits.push("Orange", "Peach");
+     fruits.unshift("Pineapple", "Lemon");
+     console.log(fruits);// "Pineapple", "Lemon", "Apple", "Orange", "Peach"`
+
+    #### Ostale metode
+    5. `.splice()` - Dodaje, uklanja  ili zamenjuje element
+      ##### Sintaksa
+      `arr.splice(početak[, obriši, elem1, ..., elemN]);`
+      - Modifikuje niz od početka, uklanja (ne uključuje obriši) obriši elemente i posle ubacuje elem1, ..., elemN na njihova mesta
+      - Vraća niz uklonjenih elemenata
+      ###### Primer uklanjanja
+      `let arr = ["I", "study", "JavaScript"];
+       arr.splice(1, 1); // od indeksa 1 uklanja 1 element
+       console.log(arr); // ["I", "JavaScript]`
+
+      ###### Primer zamene
+      `let arr = [|"I", "study", "JavaScript"|, "right", "now"];
+       arr.splice(0, 3, "Let's", "dance"); // uklanja prva 3 elementa i zamenjuje ih sa drugim
+       console.log(arr) // ["Let's", "dance", "right", "now"]`
+
+       `let arr = [|"I", "study"|, "JavaScript", "right", "now"];
+        let removed = arr.splice(0, 2); // uklanja prva 2 elementa
+        console.log(removed); // "I", "study"`
+
+      ###### Primer dodavanja
+      `let arr =["I", "study", "JavaScript"];
+      arr.splice(2, 0, "complex", "language"); // od indeksa 2 ništa ne uklanja, pa dodaje "complex" i "language"
+      console.log(arr); "I", "study", "complex", "language", "JavaScript"`
+
+      - U ovom, kao i u ostalim metodama, negativni indeksi su dozvoljeni
+      ###### Primer
+      `let arr = [1, 2, 5];
+      arr.splice(-1, 0, 3, 4); // od jedan korak sa kraja, ne uklanjaj ništa, pa ubaci 3 i 4
+      console.log(arr); // 1, 2, 3, 4, 5`
+    6. `.slice()` mnogo jednostavniji nego `.splice()`
+      ##### Sintaksa
+      `arr.slice([start], [kraj])`
+      - Vraća novi niz kopirajući od start da kraja (ne uključuje kraj). Oba mogu biti negativni
+      - Slična je string metodi `.slice()`, ali vraća podnizove
+      ###### Primer
+      `let arr = ["t", "e", "s", "t"];
+       console.log(arr.slice(1, 3)); // e, s(kopira od 1 do 3)
+       console.log(arr.slice(-2)); // s, t (kopira od -2 do kraja)`
+       
+      - Može da se poziva i bez argumenata (pravi se kopija niza)
+
+    7. `.concat()` - pravi nov niz koji uključuje vrednosti od drugog niza i dodatne stavke
+      ##### Sintaksa
+      `arr.concat(arg1, arg2...)`
+      - Prihvata bilo koji broj argumenata (nizovi ili vrednost)
+      - Rezultat je novi niz koji sadrži stavke od niza, pa onda arg1; arg2 itd.
+      - Ako je argument argN niz, svi elementi se kopiraju
+      ###### Primer pravljenja novog niza
+      `let arr = [1, 2];
+       console.log(arr.concat([3,4])); // pravi se nov niz od arr i [3, 4]; rezultat: 1, 2, 3, 4
+       console.log(arr.concat([3, 4], [5, 6])); // pravi se nov niz od arr, [3, 4] i [5, 6]; rezultat: 1, 2, 3, 4, 5, 6`
+
+      * Normalno on samo kopira elemente iz niza, a drugi objekti (iako izgledaju kao niz) se celi dodaju
+      ###### Primer
+      `let arr = [1, 2];
+       let arrayLike = {
+        0: "something",
+        length: 1 
+       };
+       console.log(arr.concat(arrayLike));// 1, 2, [object Object]`
+
+      * Ako ima specijalno svojstvo `Symbol.isConcatSpreadable`, onda se u `concat()` tretira kao niz
+      ###### Primer
+      `let arr = [1, 2];
+       let arrayLike = {
+       0: "something",
+       1: "else",
+       [Symbol.isConcatSpreadable]: true,
+       length: 2
+       };
+       console.log( arr.concat(arrayLike) ); // 1,2,something,else`
+
+  * `[]` dolaze od sintakse objekta tj. niz je objekat
+  * Pomoću `[]` se pristupa svojstvu niza
+  * Za prelaz kroz najstariji način je pomoću `for` petlje
+    ##### Primer
+    `let arr =["Apple", "Orange", "Pear"];
+    for (let i = 0; i < arr.length; i++){
+      console.log(arr[i]);
+    }`
+
+  * Za nizove postoji `for...of` petlja
+    ##### Primer
+    `let fruits =["Apple", "Orange", "Pear"];
+     for (let fruit of fruits) {
+      console.log(fruit);
+     }`
+    
+  * `for...of` samo daje pristup vrednosti, ne broju trenutnog elementa
+  
+  ### Multidimenzionalni niz
+  * Niz može da ima elemente koji su takođe niz
+    #### Primer
+    `let matrix = [
+     [1, 2, 3],
+     [4, 5, 6],
+     [7, 8, 9]
+     ];
+     console.log(matrix[0][1]); // 2, druga vrednost prvog unutrašnjeg niza`
+
+  * Samo implementiraju metodu `.toString()`
+  
+  ### forEach
+    * Pokretanje funkcije za svaki element niza
+    #### Sintaksa
+    `arr.forEach(function(item, index, array){
+    kod})`
+    ##### Primer za prikaz svakog elementa niza
+    `["Bilbo", "Gandalf", "Nazgul"].forEach(alert);`
+
+    #### Primer koji je elaboratniji o njihovim pozicijama
+    `["Bilbo", "Gandalf", "Nazgul"].forEach((item, index array) => {
+      alert(`${item} is at index ${index} in ${array}`);
+      });`
+
+    * Rezultat funkcije (ako vrati bilo koju vrednost) se ignoriše i odbacuje
+
+  ### Pretraga u nizu
+    #### .indexOf()/.lastIndexOf() i .includes()
+    * metode `arr.indexOf()` i `arr.includes()` imaju slični sintaksu i rade isto kao njihove verzije za stringove, ali postoje razlike:
+      - `arr.indexOf(item, from)` - traži item od starta od indeksa from i vraća indeks gde je nađen, ako ne vraća -1
+      - `arr.includes(item, from)` - traži item od starta od indeksa from, ako je nađe vraća true
+    * Ove metode se koriste sa samo jednim argumentom `item`, podrazumevano traži od početka
+    ##### Primer
+    `let arr = [1, 0];
+    console.log(arr.indexOf(0)); // 1`
+
+    * `arr.lastIndexOf()` je ista kao `indexOf()` samo traži sa desna na levo
+    ##### Primer
+    `let fruits = ["Apple", "Orange", "Apple"];
+    console.log(fruits.lastIndexOf("Apple")); // 2 (poslednji Apple)`
+    * `includes()` je bolji sa `NaN`
+  #### .find() i .findIndex()/.findLastIndex()
+    ##### Sintaksa
+    `let result = arr.find(function(item, index, array){
+    })`
+    - Funkcija se poziva za elemente niza, jedan pa drugi:
+    1. item je element
+    2. index je indeks
+    3. array je niz 
+    * Ako vrati true, item se vraća i prekida se potraga, ako je scenario false vraća undefined
+    ###### Primer .find()
+    `let users = [
+     {id: 1, name: "John"},
+     {id: 2, name: "Pete"},
+     {id: 3, name: "Mary"}
+     ];
+     let user = users.find(item => item.id == 1);
+     alert(user.name); // John`
+
+     * `arr.findIndex()` ima istu sintaksu ali vraća indeks gde je element pronađen, a ako ne pronađe vraća -1
+     * `arr.lastIndex()` je sličan `.findIndex()`, ali pretražuje sa desna na levo kao `.lastIndexOf()`
+    ###### Primer .findIndex() i .findLastIndex()
+    `let users = [
+     {id: 1, name: "John"},
+     {id: 2, name: "Pete"},
+     {id: 3, name: "Mary"},
+     {id: 4, name: "John"}
+     ];
+     alert(users.findIndex(user => user.name == 'John')); // 0, traži indeks prvog John
+     alert(users.findLastIndex(user => user.name == 'John')); // 3, traži indeks poslednjeg John`
+  #### filter
+    ##### Sintaksa
+    `let result = arr.filter(function(item, index, array){
+    })`
+    * Sintaksa je slična `.find()`, ali `.filter()` vraća niz svih elemenata koji se poklapaju
+    ###### Primer
+      `let users = [
+       {id: 1, name: "John"},
+       {id: 2, name: "Pete"},
+       {id: 3, name: "Mary"}
+       ];
+       let someUsers = users.filter(item => item.id < 3);
+       alert(someUsers.length); // 2, vraća niz prva dva korisnika`
+  ### Transformacija niza
+    #### .map()
+      * Poziva funkciju za svaki element niza i vraća niz rezultata
+      ##### Sintaksa
+      `let result = arr.map(function(item,index, array){
+      })`
+      * Vraća novu vrednost umesto item
+      ###### Primer
+      `let lengths = ["Bilbo", "Gandalf", "Nazgul"].map  (item => item.length);
+       console.log(lengths); // 5,7,6`
+    #### sort()
+    * sortira niz (menja redosled u nizu)
+    * Takođe vraća sortiran niz, ali povratna vrednost obično ignoriše jer je arr sam sebe modifikovao i po podrazumevano sortiraju se kao stringovi
+    ##### Primer
+    `let arr = [ 1, 2, 15 ];
+     arr.sort(); // sortira sadržaj niza
+     console.log(arr);  // 1, 15, 2`
+
+    - Da bi se koristio naše sortiranje, treba da se kao argument `arr.sort()` stavi funkcija
+    ##### Primer
+    let arr = [1, 2, 15];`
+    arr.sort(funkcija);`
+
+    #### .reverse()
+    * Obrće redosled niza
+      ##### Primer
+      `let arr = [1, 2, 3];
+      arr.reverse();
+      console.log(arr) // 3, 2, 1`
+    #### .split() i .join()
+    * `.split(razdvajač)` razdvaja string u niz po datom razdvajaču
+      ##### Primer
+      `let names = 'Bilbo, Gandalf, Nazgul';
+        let arr = names.split(', ');
+        for (let name of arr) {
+        alert( `A message to ${name}.` ); // A message to Bilbo (and other names)
+        }`
+
+    * Ima i opcioni drugi argument a to je limit dužine niza (ako se da, dodatni elementi se ignorišu) i retko se koristi
+    * Ako bi se pozivao `.split()` bez delim razdvajao bi po slovima
+      ##### Primer
+      `let str = "test";
+      console.log(str.split('')); // t,e,s,t`
+    * `.join()` je obrnut od `.split()`
+    * Pravi string od arr elementa koji je povezao sa argumentom između njih
+      ##### Primer
+      `let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+      let str = arr.join(';'); // spaja niz u string koristeći ;
+      console.log(str); // Bilbo;Gandalf;Nazgul`
+  
+    #### .reduce()/.reduceRight()
+    * Za računanje vrednosti baziranu na niz
+    ##### Sintaksa
+    `let value = arr.reduce(function(accumulator, item, index, array){
+    ...}, [initial]);`
+    * Funkcija se primenjuje na sve elemente niza jedan pa drugi i nosi rezultat na sledeći poziv kao prvi argument
+    * Argumenti:
+    1. accumulator - rezultat prethodnog pozivanja funkcije, jednak initial prvi put( ako je on dat)
+    2. item - trenutni element niza
+    3. index - pozicija
+    4. array - niz 
+    ###### Primer
+    `let arr = [1, 2, 3, 4, 5];
+     let result = arr.reduce((sum, current) => sum + current, 0);
+     console.log(result); // 15`
+
+    ###### Primer kad rezultat se initial ignoriše
+    `let arr = [1, 2, 3, 4, 5];
+    let result = arr.reduce((sum, current) => sum + current); // sklonjena initial vrednost (nema 0)
+    console.log( result ); // 15`
+
+    * Treba biti baš oprezan jer ako je niz prazan, .`reduce()` bez inital vrednosti daje grešku
+    * Savet je uvek davati inital vrednost
+    * `arr.reduceRight()` radi isto samo ide sa desna na levo
+  
+  ### .isArray()
+    * vraća `true` ako je vrednost niz, ako nije vraća false
+  
+  ### thisArg
+  * Skoro sve metode koje pozivaju funkciju, osim .sort(), prihvataju opcioni dodatni parametar `thisArg`
+  * Retko se koristi
+    #### Sintaksa
+    `arr.find(func, thisArg);
+    arr.filter(func, thisArg);
+    arr.map(func, thisArg);
+    ...`
+  * Njegova vrednost postaje `this` za funkcije
+    ##### Primer
+    `let army = {
+    minAge: 18,
+    maxAge: 27,
+    canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
+    }
+    };
+    let users = [
+    {age: 16},
+    {age: 20},
+    {age: 23},
+    {age: 30}
+    ];
+  // find users, for who army.canJoin returns true
+    let soldiers = users.filter(army.canJoin, army);
+    alert(soldiers.length); // 2
+    alert(soldiers[0].age); // 20
+    alert(soldiers[1].age); // 23`
