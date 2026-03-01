@@ -9,7 +9,7 @@
 
 ## Dodavanje fajla u repozitorijum
 1. Kucaj `touch ime fajla`
-2. Kucaj `git add ime fajla`
+2. Kucaj `git add "ime fajla"`
 
 ## Provera Statusa
 1. Kucaj `git status`, crveno nije postavljen, zeleno jeste
