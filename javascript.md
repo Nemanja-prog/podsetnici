@@ -487,7 +487,7 @@ what you had to do, and began,`;
     ### Dve sintakse
     1. `let arr = new Array();`
     2. `let arr = [];`
-    - Drugi način se mnogo često koristi
+    - Drugi način se češće koristi
     #### Primer
     `let fruits = ["Apple", "Orange", "Plum"];`
 
@@ -508,7 +508,7 @@ what you had to do, and began,`;
     #### Napomena
     - Kad se niz modifikuje, automatski se ažurira
     - Ne broji vrednosti, nego `najveći indeks + 1`
-    - Ona je upisiva tj. ručno se poveća, ništa specijalno, ali ako se ručno smanji, niz se skraćuje (nepovratan je)
+    - Dužina se može ručno menjati; ako se smanji, niz se skraćuje nepovratno
     - Za čišćenje niza koristiti `arr.length = 0;`
     ##### Primer
     `let fruits = ["Apple", "Orange", "Plum"];
@@ -520,7 +520,7 @@ what you had to do, and began,`;
     alert(fruits); // Apple, Orange, Plum` 
   
   * Može da skladišti bilo koji tip podatka
-  * Može da se završava sa `,`
+  * Niz može završiti sa zapetom
   
   ### Pristup poslednjm elementu niza
   1. `imeNiza[imeNiza.length - 1]`
@@ -532,13 +532,13 @@ what you had to do, and began,`;
    `console.log(fruits.at(-1)); // Plum`
 
   - Drugi način je noviji
-  - Isto je kao imeNiza[i], ako je i >= 0
-  - Za negativne vrednosti, počinje sa kraja niza
+  - Isto kao imeNiza[i] za i >= 0
+  - Negativni indeksi broje od kraja niza
 
   ### Metode
     #### Rade sa krajem niza
     1. `.push()` - Dodaje element na kraju niza
-    - Jednak je `imeNiza[imeNiza.length] = ...`
+    - Isto kao `imeNiza[imeNiza.length] = ...`
     ##### Primer
     `let fruits = ["Apple", "Orange"];
     fruits.push("Pear");
@@ -546,14 +546,14 @@ what you had to do, and began,`;
 
     2. `.pop()` - Uzima element sa kraja niza i vraća ga
     ##### Napomena
-    - Vraća poslednji element niza, ali modifikuje niz tako što ga uklanja
+    - Vraća i uklanja poslednji element
     ###### Primer
     `let fruits = ["Apple", "Orange", "Pear"];
     console.log(fruits.pop()); // uklanja Pear i vraća ga
      console.log(fruits); // Apple, Orange`
     
     #### Rade sa početka niza
-    3. `.shift()` - Uzima prvi element sa početka niza, vraća ga i gura niz (drugi element sad postaje prvi)
+    3. `.shift()` - Vraća i uklanja prvi element; ostali se pomeraju
     ##### Primer
    `let fruits = ["Apple", "Orange", "Pear"];
     console.log(fruits.shift()); // uklanja Apple i vraća ga
@@ -565,7 +565,7 @@ what you had to do, and began,`;
      fruits.unshift("Apple");
      console.log(fruits); // Apple, Orange, Pear`
 
-    - Metode `.push()` i `.unshift()` mogu da dodaju više od jednog elementa
+    - `.push()` i `.unshift()` mogu dodati više elemenata odjednom
     ##### Primer
     `let fruits = ["Apple"];
      fruits.push("Orange", "Peach");
@@ -576,7 +576,7 @@ what you had to do, and began,`;
     5. `.splice()` - Dodaje, uklanja  ili zamenjuje element
       ##### Sintaksa
       `arr.splice(početak[, obriši, elem1, ..., elemN]);`
-      - Modifikuje niz od početka, uklanja (ne uključuje obriši) obriši elemente i posle ubacuje elem1, ..., elemN na njihova mesta
+      - Menja niz od početak i uklanja do obriši elementa i dodaje elem1, ..., elemN na njihovo mesto
       - Vraća niz uklonjenih elemenata
       ###### Primer uklanjanja
       `let arr = ["I", "study", "JavaScript"];
@@ -595,9 +595,9 @@ what you had to do, and began,`;
       ###### Primer dodavanja
       `let arr =["I", "study", "JavaScript"];
       arr.splice(2, 0, "complex", "language"); // od indeksa 2 ništa ne uklanja, pa dodaje "complex" i "language"
-      console.log(arr); "I", "study", "complex", "language", "JavaScript"`
+      console.log(arr); ["I", "study", "complex", "language", "JavaScript"]`
 
-      - U ovom, kao i u ostalim metodama, negativni indeksi su dozvoljeni
+      - Negativni indkesi su dozvoljeni
       ###### Primer
       `let arr = [1, 2, 5];
       arr.splice(-1, 0, 3, 4); // od jedan korak sa kraja, ne uklanjaj ništa, pa ubaci 3 i 4
@@ -605,27 +605,27 @@ what you had to do, and began,`;
     6. `.slice()` mnogo jednostavniji nego `.splice()`
       ##### Sintaksa
       `arr.slice([start], [kraj])`
-      - Vraća novi niz kopirajući od start da kraja (ne uključuje kraj). Oba mogu biti negativni
-      - Slična je string metodi `.slice()`, ali vraća podnizove
+      - Vraća novi niz od start do kraj ( ne uključuje kraj). Argumenti mogu biti negativni
+      - Slično `.slice()` za string, ali vraća podnizove niza
       ###### Primer
       `let arr = ["t", "e", "s", "t"];
        console.log(arr.slice(1, 3)); // e, s(kopira od 1 do 3)
        console.log(arr.slice(-2)); // s, t (kopira od -2 do kraja)`
        
-      - Može da se poziva i bez argumenata (pravi se kopija niza)
+      - Bez argumenta pravi kopiju celog niza
 
     7. `.concat()` - pravi nov niz koji uključuje vrednosti od drugog niza i dodatne stavke
       ##### Sintaksa
       `arr.concat(arg1, arg2...)`
       - Prihvata bilo koji broj argumenata (nizovi ili vrednost)
-      - Rezultat je novi niz koji sadrži stavke od niza, pa onda arg1; arg2 itd.
-      - Ako je argument argN niz, svi elementi se kopiraju
+      - Rezultat je novi niz: elementi originalnog niza, zatim svi argumenti
+      - Ako je argument niz, njegovi elementi se raspakuju u novi niz
       ###### Primer pravljenja novog niza
       `let arr = [1, 2];
        console.log(arr.concat([3,4])); // pravi se nov niz od arr i [3, 4]; rezultat: 1, 2, 3, 4
        console.log(arr.concat([3, 4], [5, 6])); // pravi se nov niz od arr, [3, 4] i [5, 6]; rezultat: 1, 2, 3, 4, 5, 6`
 
-      * Normalno on samo kopira elemente iz niza, a drugi objekti (iako izgledaju kao niz) se celi dodaju
+      * Objekti koji nisu nizovi se dodaju celokupno, bez raspakivanja
       ###### Primer
       `let arr = [1, 2];
        let arrayLike = {
@@ -634,7 +634,7 @@ what you had to do, and began,`;
        };
        console.log(arr.concat(arrayLike));// 1, 2, [object Object]`
 
-      * Ako ima specijalno svojstvo `Symbol.isConcatSpreadable`, onda se u `concat()` tretira kao niz
+      * Sa `[Symbol.isConcatSpreadable]: true`, objekat se tretira kao niz
       ###### Primer
       `let arr = [1, 2];
        let arrayLike = {
@@ -645,9 +645,126 @@ what you had to do, and began,`;
        };
        console.log( arr.concat(arrayLike) ); // 1,2,something,else`
 
-  * `[]` dolaze od sintakse objekta tj. niz je objekat
-  * Pomoću `[]` se pristupa svojstvu niza
-  * Za prelaz kroz najstariji način je pomoću `for` petlje
+    8. `.some()` - Proverava da li bar jedan element zadovoljava uslov
+      ###### Primer:
+        `const numbers = [1, 2, 3, 4];
+         const hasEven = numbers.some(num => num % 2 === 0);
+         console.log(hasEven); // true`
+
+    9. `.every()` - Proverava da li svi elementi zadovoljavaju uslov.
+      ###### Primer:
+      `const numbers = [2, 4, 6];
+       const allEven = numbers.every(num => num % 2 === 0);
+       console.log(allEven); // true`
+
+    10. `.flat()` - "Spljošti" višedimenzionalni niz.
+      ###### Primer:
+      `const nested = [1, [2, 3], [4, [5]]];
+       console.log(nested.flat());   // [1, 2, 3, 4, [5]]
+       console.log(nested.flat(2)); // [1, 2, 3, 4, 5]`
+
+    11. `.flatMap()` - Kombinuje .map() + .flat(1) u jednom koraku.
+      ###### Primer:
+      `const words = ["hello world", "foo bar"];
+       const letters = words.flatMap(word => word.split(" "));
+       console.log(letters); // ["hello", "world", "foo", "bar"]`
+
+    12. `.fill()` - Popunjava niz sa zadatom vrednošću.
+      ###### Primer:
+      `const arr = [1, 2, 3, 4];
+       arr.fill(0, 1, 3); // od indeksa 1 do 3 (ne uključuje 3)
+       console.log(arr); // [1, 0, 0, 4]`  
+
+    13. `.copyWithin()` - Kopira deo niza na drugo mesto u istom nizu.
+      ###### Primer:
+      `let arr = [1, 2, 3, 4, 5];
+       arr.copyWithin(0, 3, 5); // kopira [4,5] na početak
+       console.log(arr); // [4, 5, 3, 4, 5]`
+
+    14. `.findLast()` i `.findLastIndex()` - Isto kao `.find()` i `.findIndex()`, ali traži sa kraja niza.
+      ###### Primer:
+      `const nums = [1, 2, 3, 4, 5, 3];
+       console.log(nums.findLast(n => n === 3));       // 3 (poslednji 3)
+       console.log(nums.findLastIndex(n => n === 3));  // 5 (indeks poslednjeg 3)`
+
+    15. `.at()` - Pristupa elementu po indeksu, može i negativan (od kraja niza).
+      ###### Primer:
+      `const arr = [10, 20, 30];
+       console.log(arr.at(-1)); // 30`
+
+    16. `.toLocaleString()` - Pretvara sve elemente niza u string koristeći lokalna pravila (korisno za brojeve i datume).
+      ###### Primer:
+      `const arr = [123456.789, new Date('2026-03-07')];
+       console.log(arr.toLocaleString('de-DE')); // "123.456,789; 07.03.2026, 00:00:00"`
+
+    17. `.entries()` - Vraća iterabilni objekat sa parovima [index, value] za svaki element niza.
+      ###### Primer:
+      `const arr = ["a", "b", "c"];
+       for (const [i, val] of arr.entries()) {
+       console.log(i, val);
+       }
+       // 0 "a"
+       // 1 "b"
+       // 2 "c"`
+
+    18. `.keys()` - Vraća iterabilni objekat sa indeksima niza.
+      ###### Primer:
+      `const arr = ["x", "y", "z"];
+       for (const index of arr.keys()) {
+       console.log(index);
+       }
+       // 0
+       // 1
+       // 2`
+
+    19. `.values()` - Vraća iterabilni objekat sa vrednostima niza.
+      ###### Primer
+      `const arr = [10, 20, 30];
+       for (const value of arr.values()) {
+       console.log(value);
+       }
+       // 10
+       // 20
+       // 30`
+
+    20. `Array.prototype[Symbol.iterator]()` - Omogućava nizu da bude iterabilan (npr. u for...of).
+      ###### Primer:
+      `const arr = [1, 2, 3];
+       const iter = arr[Symbol.iterator]();
+       console.log(iter.next()); // {value: 1, done:    false}
+       console.log(iter.next()); // {value: 2, done: false}`
+
+    21. `.toReversed()` - Pravi novi niz sa elementima obrnutim redosledom, bez menjanja originalnog niza.
+      ###### Primer:
+      `const arr = [1, 2, 3];
+       const rev = arr.toReversed();
+       console.log(rev); // [3, 2, 1]
+       console.log(arr); // [1, 2, 3] originalni ostaje`
+
+    22. `.toSorted()` - Pravi novi niz koji je sortiran, bez menjanja originalnog niza.
+      ###### Primer:
+      `const arr = [3, 1, 2];
+       const sorted = arr.toSorted((a, b) => a - b);
+       console.log(sorted); // [1, 2, 3]
+       console.log(arr); // [3, 1, 2]`
+
+    23. `.toSpliced()` - Pravi novi niz sa dodavanjem/brisanje/zamena elemenata, original ostaje nepromenjen (kao .splice() ali ne menja original).
+      ###### Primer:
+      `const arr = [1, 2, 3, 4];
+       const newArr = arr.toSpliced(1, 2, 99, 100);
+       console.log(newArr); // [1, 99, 100, 4]
+       console.log(arr);    // [1, 2, 3, 4]`
+
+    24. `.with()` - Pravi novi niz sa promenjenim elementom na datom indeksu, original ostaje.
+      ###### Primer:
+      `const arr = [1, 2, 3];
+       const newArr = arr.with(1, 99);
+       console.log(newArr); // [1, 99, 3]
+       console.log(arr);    // [1, 2, 3]`
+
+  * Niz je objekat, `[]` služi za pristup elementima 
+  * `[]` pristupa elementima po indeksu
+  * Stari način iteracije: `for` petlja
     ##### Primer
     `let arr =["Apple", "Orange", "Pear"];
     for (let i = 0; i < arr.length; i++){
@@ -661,7 +778,7 @@ what you had to do, and began,`;
       console.log(fruit);
      }`
     
-  * `for...of` samo daje pristup vrednosti, ne broju trenutnog elementa
+  * `for...of` daje samo vrednost, ne indeks
   
   ### Multidimenzionalni niz
   * Niz može da ima elemente koji su takođe niz
@@ -673,10 +790,10 @@ what you had to do, and began,`;
      ];
      console.log(matrix[0][1]); // 2, druga vrednost prvog unutrašnjeg niza`
 
-  * Samo implementiraju metodu `.toString()`
+  * Multidimenzionalni nizovi su nizovi u nizu `.toString()` ih pretvara u string
   
   ### forEach
-    * Pokretanje funkcije za svaki element niza
+    * Poziva funkciju za svaki element niza
     #### Sintaksa
     `arr.forEach(function(item, index, array){
     kod})`
@@ -688,32 +805,32 @@ what you had to do, and began,`;
       alert(`${item} is at index ${index} in ${array}`);
       });`
 
-    * Rezultat funkcije (ako vrati bilo koju vrednost) se ignoriše i odbacuje
+    * Povratna vrednost se ignoriše
 
   ### Pretraga u nizu
     #### .indexOf()/.lastIndexOf() i .includes()
-    * metode `arr.indexOf()` i `arr.includes()` imaju slični sintaksu i rade isto kao njihove verzije za stringove, ali postoje razlike:
+    * `arr.indexOf()` i `arr.includes()` traže element u nizu; sintaksa je slična string verzijama, ali imaju razlike:
       - `arr.indexOf(item, from)` - traži item od starta od indeksa from i vraća indeks gde je nađen, ako ne vraća -1
       - `arr.includes(item, from)` - traži item od starta od indeksa from, ako je nađe vraća true
-    * Ove metode se koriste sa samo jednim argumentom `item`, podrazumevano traži od početka
+    * Ako se koristi samo `item`, pretraga počinje od indeksa 0
     ##### Primer
     `let arr = [1, 0];
     console.log(arr.indexOf(0)); // 1`
 
-    * `arr.lastIndexOf()` je ista kao `indexOf()` samo traži sa desna na levo
+    * `arr.lastIndexOf()` je ista kao `.indexOf()` samo traži sa desna na levo
     ##### Primer
     `let fruits = ["Apple", "Orange", "Apple"];
     console.log(fruits.lastIndexOf("Apple")); // 2 (poslednji Apple)`
-    * `includes()` je bolji sa `NaN`
+    * `.includes()` može pronaći `NaN`, za razliku od `.indexOf()`
   #### .find() i .findIndex()/.findLastIndex()
     ##### Sintaksa
     `let result = arr.find(function(item, index, array){
     })`
-    - Funkcija se poziva za elemente niza, jedan pa drugi:
+    - Funkcija se poziva za svaki element niza dok ne vrati `true`:
     1. item je element
     2. index je indeks
     3. array je niz 
-    * Ako vrati true, item se vraća i prekida se potraga, ako je scenario false vraća undefined
+    * Ako funkcija vrati `true`, `.find()` vraća element; inače `undefined`
     ###### Primer .find()
     `let users = [
      {id: 1, name: "John"},
@@ -723,8 +840,8 @@ what you had to do, and began,`;
      let user = users.find(item => item.id == 1);
      alert(user.name); // John`
 
-     * `arr.findIndex()` ima istu sintaksu ali vraća indeks gde je element pronađen, a ako ne pronađe vraća -1
-     * `arr.lastIndex()` je sličan `.findIndex()`, ali pretražuje sa desna na levo kao `.lastIndexOf()`
+     * `arr.findIndex()` vraća indeks prvog elementa koji zadovoljava uslov, ili -1
+     * `arr.lastIndex()` traži element sa desna na levo
     ###### Primer .findIndex() i .findLastIndex()
     `let users = [
      {id: 1, name: "John"},
@@ -738,15 +855,15 @@ what you had to do, and began,`;
     ##### Sintaksa
     `let result = arr.filter(function(item, index, array){
     })`
-    * Sintaksa je slična `.find()`, ali `.filter()` vraća niz svih elemenata koji se poklapaju
+    * `.filter()` vraća niz svih elemenata koji zadovoljavaju uslov
     ###### Primer
-      `let users = [
-       {id: 1, name: "John"},
-       {id: 2, name: "Pete"},
-       {id: 3, name: "Mary"}
-       ];
-       let someUsers = users.filter(item => item.id < 3);
-       alert(someUsers.length); // 2, vraća niz prva dva korisnika`
+      `function isOdd(num) {
+       return num % 2 !== 0;
+       }
+       const arr = [1, 2, 3, 4, 5];
+       const oddNums = arr.filter(isOdd);
+       console.log(oddNums); // [1, 3, 5]
+       console.log(arr);     // [1, 2, 3, 4, 5], originalni niz nije promenjen`
   ### Transformacija niza
     #### .map()
       * Poziva funkciju za svaki element niza i vraća niz rezultata
@@ -755,32 +872,38 @@ what you had to do, and began,`;
       })`
       * Vraća novu vrednost umesto item
       ###### Primer
-      `let lengths = ["Bilbo", "Gandalf", "Nazgul"].map  (item => item.length);
-       console.log(lengths); // 5,7,6`
-    #### sort()
+      `function addOne(num) {
+       return num + 1;
+       }
+       const arr = [1, 2, 3, 4, 5];
+       const mappedArr = arr.map(addOne);
+       console.log(mappedArr); // [2, 3, 4, 5, 6]`
+  #### sort()
     * sortira niz (menja redosled u nizu)
-    * Takođe vraća sortiran niz, ali povratna vrednost obično ignoriše jer je arr sam sebe modifikovao i po podrazumevano sortiraju se kao stringovi
+    * vraća sortiran niz, ali povratna vrednost se obično ignoriše jer `arr` menja sam sebe 
+    * Po podrazumevanij vrednosti elementi se sortiraju kao stringovi
     ##### Primer
     `let arr = [ 1, 2, 15 ];
-     arr.sort(); // sortira sadržaj niza
+     arr.sort(); // sortira elemente kao stringove
      console.log(arr);  // 1, 15, 2`
 
-    - Da bi se koristio naše sortiranje, treba da se kao argument `arr.sort()` stavi funkcija
+    - Da bi se koristilo numeričko sortiranje, treba da se kao argument `arr.sort()` stavi funkcija
     ##### Primer
     let arr = [1, 2, 15];`
-    arr.sort(funkcija);`
+    arr.sort((a, b) => a - b); // numeričko sortiranje
+    console.log(arr); // [1, 2, 15]`
 
     #### .reverse()
     * Obrće redosled niza
       ##### Primer
       `let arr = [1, 2, 3];
       arr.reverse();
-      console.log(arr) // 3, 2, 1`
+      console.log(arr); // 3, 2, 1`
     #### .split() i .join()
     * `.split(razdvajač)` razdvaja string u niz po datom razdvajaču
       ##### Primer
-      `let names = 'Bilbo, Gandalf, Nazgul';
-        let arr = names.split(', ');
+      `let names = ['Bilbo', 'Gandalf', 'Nazgul'];
+        let arr = names.split(', '); // razdvaja string po ", "
         for (let name of arr) {
         alert( `A message to ${name}.` ); // A message to Bilbo (and other names)
         }`
@@ -789,12 +912,12 @@ what you had to do, and began,`;
     * Ako bi se pozivao `.split()` bez delim razdvajao bi po slovima
       ##### Primer
       `let str = "test";
-      console.log(str.split('')); // t,e,s,t`
+      console.log(str.split('')); // [t,e,s,t]`
     * `.join()` je obrnut od `.split()`
     * Pravi string od arr elementa koji je povezao sa argumentom između njih
       ##### Primer
       `let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
-      let str = arr.join(';'); // spaja niz u string koristeći ;
+      let str = arr.join(';'); // spaja elemente niza u string koristeći ";"
       console.log(str); // Bilbo;Gandalf;Nazgul`
   
     #### .reduce()/.reduceRight()
@@ -804,36 +927,40 @@ what you had to do, and began,`;
     ...}, [initial]);`
     * Funkcija se primenjuje na sve elemente niza jedan pa drugi i nosi rezultat na sledeći poziv kao prvi argument
     * Argumenti:
-    1. accumulator - rezultat prethodnog pozivanja funkcije, jednak initial prvi put( ako je on dat)
+    1. accumulator - rezultat prethodnog pozivanja funkcije; prvi put je jednak `initial`, ako je dat
     2. item - trenutni element niza
     3. index - pozicija
     4. array - niz 
     ###### Primer
     `let arr = [1, 2, 3, 4, 5];
+    // Sa početnom vrednošću
      let result = arr.reduce((sum, current) => sum + current, 0);
      console.log(result); // 15`
 
-    ###### Primer kad rezultat se initial ignoriše
-    `let arr = [1, 2, 3, 4, 5];
-    let result = arr.reduce((sum, current) => sum + current); // sklonjena initial vrednost (nema 0)
-    console.log( result ); // 15`
+    // Bez početne vrednosti
+    let result2 = arr.reduce((sum, current) => sum + current); // sklonjena initial vrednost (nema 0)
+    console.log(result2); // 15`
 
-    * Treba biti baš oprezan jer ako je niz prazan, .`reduce()` bez inital vrednosti daje grešku
-    * Savet je uvek davati inital vrednost
+    * Treba biti baš oprezan jer ako je niz prazan, `.reduce()` bez initial vrednosti daje grešku
+    * Savet: je uvek davati initial vrednost!
     * `arr.reduceRight()` radi isto samo ide sa desna na levo
+    ###### Primer
+    `let arr = [1, 2, 3, 4, 5];
+     let resultRight = arr.reduceRight((sum, current) => sum + current);
+     console.log(resultRight); // 15`
   
   ### .isArray()
-    * vraća `true` ako je vrednost niz, ako nije vraća false
+    * vraća `true` ako je vrednost niz, inače `false`
   
   ### thisArg
-  * Skoro sve metode koje pozivaju funkciju, osim .sort(), prihvataju opcioni dodatni parametar `thisArg`
+  * Skoro sve metode koje pozivaju funkciju, osim `.sort()`, mogu primiti opcioni parametar `thisArg`
+  * Njegova vrednost postaje `this` u funkciji
   * Retko se koristi
     #### Sintaksa
     `arr.find(func, thisArg);
     arr.filter(func, thisArg);
     arr.map(func, thisArg);
     ...`
-  * Njegova vrednost postaje `this` za funkcije
     ##### Primer
     `let army = {
     minAge: 18,
@@ -848,8 +975,8 @@ what you had to do, and began,`;
     {age: 23},
     {age: 30}
     ];
-  // find users, for who army.canJoin returns true
+  // Pronalazi korisnike koji ispunjavaju uslove za vojsku
     let soldiers = users.filter(army.canJoin, army);
-    alert(soldiers.length); // 2
-    alert(soldiers[0].age); // 20
-    alert(soldiers[1].age); // 23`
+    console.log(soldiers.length); // 2
+    console.log(soldiers[0].age); // 20
+    console.log(soldiers[1].age); // 23`
