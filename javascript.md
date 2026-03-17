@@ -406,6 +406,28 @@ what you had to do, and began,`;
      const message = favAnimal('Goat');`
     - Može i ovo:
     `console.log(favAnimal('Goat'));` 
+  
+  ### Arrow funkcije (streličaste funkcije)
+  * Koristi ´=>´ simbol
+  * Uvek su funkcije izraza, ali ne moraju biti dodeljeni promenljivoj
+  * Ako ima samo jedan parametar može da se izostavi `()`
+  * Ako nema parametara `()` mora da stoji
+  * Nasleđuju ključni reč `this` iz obližnjeg koda
+  * Ne koristiti: 
+    + Ne treba koristiti kao metode objekta kada je potreban `this`
+    + Kada treba sopstveni `this`
+    + Ne može kao `function declaration`
+  #### Sintaksa
+    ##### Sa više od jednog parametra
+  `let promenljiva = (parametar1, parametar2) => kod;`
+    ##### Sa samo jednim parametrom
+    `let promenljiva = parametar => kod`
+  ###### Primer sa više od jednog parametra
+  `const multiply = (a, b) => a * b;`
+  ###### Primer sa jednim parametrom
+  `const square = x => x * x;`
+  ###### Primer bez parametra
+  `const hello = () => "Hello";`
 
 ## Petlje
   * Ponavljanje koda više puta
