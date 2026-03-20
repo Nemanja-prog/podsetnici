@@ -4,6 +4,7 @@
 * `defer` - čeka da se HTML učita pre JavaScript-a
   Primer koji je preporučen:
   `<script src="javascript.js" defer></script>`
+* na kraj `<body>` taga
 
 ## Greške
 1. `ReferenceError` promenljiva nedeklarisana i/li urađena i/li naziv loše napisan (poruke:
@@ -419,15 +420,15 @@ what you had to do, and began,`;
     + Ne može kao `function declaration`
   #### Sintaksa
     ##### Sa više od jednog parametra
-  `let promenljiva = (parametar1, parametar2) => kod;`
+    `let promenljiva = (parametar1, parametar2) => kod;`
     ##### Sa samo jednim parametrom
     `let promenljiva = parametar => kod`
   ###### Primer sa više od jednog parametra
-  `const multiply = (a, b) => a * b;`
+    `const multiply = (a, b) => a * b;`
   ###### Primer sa jednim parametrom
-  `const square = x => x * x;`
+    `const square = x => x * x;`
   ###### Primer bez parametra
-  `const hello = () => "Hello";`
+    `const hello = () => "Hello";`
 
 ## Petlje
   * Ponavljanje koda više puta
@@ -1002,3 +1003,80 @@ what you had to do, and began,`;
     console.log(soldiers.length); // 2
     console.log(soldiers[0].age); // 20
     console.log(soldiers[1].age); // 23`
+
+## DOM(Document Object Model)
+* Sadržaj stranice kao drvo
+* Node - bilo šta u DOM-u
+* Element - HTML tag
+* Ciljanje:
+  1. imeElementa.imeKlase (`div.display`)
+  2. .imeKlase (`.display`)
+  3. #imeId > .imeKlase (`#container > .display`)
+  4. imeElementa#imeId > imeElementa.imeKlase (`div#container > div.display`)
+  5. Relacioni selektori (primer: `firstElementChild` ili `lastElementChild`) sa specijalnim svojstvima
+  ### Query selektori
+  - `.querySelector(selector)` - vraća referencu na prvo poklapanje
+  - `.querySelectorAll(selectors)` - vraća "NodeList" referenci koji se svi poklapaju
+    + povratna vrednost nije niz (samo izgleda i delom se ponaša), zato treba koristiti `Array.from()` jer NodeList nema sve metode niza
+  
+  ### Pravljenje elementa
+  - `document.createElement(tagName, [options])` - pravi element taga pod `tagName`, a `[options]` dodavanje opcionih parametara
+  - Taj novi element nije u DOM, nego se pravi u memoriji
+  
+  ### Elementi prilaganja
+  - `parentNode.appendChild(childNode)` - prilaže `childNode` kao poslednje dete `parentNode`
+  - `parentNode.insertBefore(newNode, referenceNode)` - ubacuje `newNode` u `parentNode` pre `referenceNode`
+  
+  ### Sklanjanje elemenata
+  - `parentNode.removeChild(child)` - uklanja `child` iz ` parentNode` na DOM i vraća referencu na `child`
+
+  ### Menjanje svojstva elementa
+  - `div.style.color = "blue";` - za jedan
+  - `div.setAttribute("style", "color: blue; background: white;");` - za sve
+  - Kada se koristi CSS svojstvo u futroli mora da se kuca ili u camelCase sa tačkom ili pod `[]` zagradom
+  
+  ### Ažuriranje atributa
+  - `div.setAttribute("id", "theDiv");` - ažuriranje, ako ne postoji pravi se element sa tim atributom
+  - `div.getAttribute("id");` - vraća vrednost
+  - `div.removeAttribute("id");` - uklanja atribut
+
+  ### Rad sa klasama
+  - `div.classList.add("new");` - dodaje klasu sa tim imenom u taj element
+  - `div.classList.remove("new");` - uklanja klasu sa tim imenom iz tog elementa
+  - `div.classList.toggle("active");` - ako taj element nema tu klasu dodaje ga, ako ga ima uklanja ga
+
+  ### Dodavanje teksta
+  - `div.textContent = "Hello World!";` - pravi tekst od ukucanog i ubacuje ga u taj element
+  - Za dodavanje teksta koristiti `.textContent` umesto `.innerHTML` iz bezbednosnih razloga
+
+  ### Dodavanje HTML sadržaja
+  `div.innerHTML = "<span>Hello World!</span>";` - renderuje HTML element u tom elementu
+
+  ### Događaji
+  - Akcije na stranici
+  - Načini:
+    1. Specificiranje funkcije kao atributa
+    2. Postavljanje svojstva u formi na `<eventType>`
+    3. Priložiti događaj
+  - Pokazane metode:
+  1. `<button onclick="alert('Hello World')">Click Me</button>`
+  2. `HTML
+      <button id="btn">Click Me</button>
+      JavaScript
+      const btn = document.querySelector("#btn");
+      btn.onclick = () => alert("Hello World");`
+  3. `HTML
+      <button id="btn">Click Me</button>
+      JavaScript
+      const btn = document.querySelector("#btn");
+      btn.addEventListener("click", () => {
+      alert("Hello World");
+      });`
+  - Sve tri metode se koriste. Treća metoda je fleksibilnija i jača, ali je i malo kompleksna.
+  - Kada dodajem funkciju kao argument u `addEventListener()` to se zove `Callback` funkcija, a to je funkcija kojoj se daje druga funkcija kao argument
+  - `e.target` - element koji je kliknut
+  #### Primer:
+    `btn.addEventListener("click", (e) => {
+    console.log(e.target);
+    });`
+  
